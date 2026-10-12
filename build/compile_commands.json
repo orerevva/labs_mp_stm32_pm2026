@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/mnt/c/project/3_year/stm32_pm2026/build",
+  "command": "arm-none-eabi-gcc -DSTM32F103C8 -DSTM32F10X_MD -I/mnt/c/project/3_year/stm32_pm2026/cmsis -I/mnt/c/project/3_year/stm32_pm2026/stm32 -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/stm32_template.dir/stm32/startup/startup_stm32f10x_md.c.o -c /mnt/c/project/3_year/stm32_pm2026/stm32/startup/startup_stm32f10x_md.c",
+  "file": "/mnt/c/project/3_year/stm32_pm2026/stm32/startup/startup_stm32f10x_md.c",
+  "output": "CMakeFiles/stm32_template.dir/stm32/startup/startup_stm32f10x_md.c.o"
+},
+{
+  "directory": "/mnt/c/project/3_year/stm32_pm2026/build",
+  "command": "arm-none-eabi-gcc -DSTM32F103C8 -DSTM32F10X_MD -I/mnt/c/project/3_year/stm32_pm2026/cmsis -I/mnt/c/project/3_year/stm32_pm2026/stm32 -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/stm32_template.dir/stm32/system_stm32f10x.c.o -c /mnt/c/project/3_year/stm32_pm2026/stm32/system_stm32f10x.c",
+  "file": "/mnt/c/project/3_year/stm32_pm2026/stm32/system_stm32f10x.c",
+  "output": "CMakeFiles/stm32_template.dir/stm32/system_stm32f10x.c.o"
+},
+{
+  "directory": "/mnt/c/project/3_year/stm32_pm2026/build",
+  "command": "arm-none-eabi-gcc -DSTM32F103C8 -DSTM32F10X_MD -I/mnt/c/project/3_year/stm32_pm2026/cmsis -I/mnt/c/project/3_year/stm32_pm2026/stm32 -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/stm32_template.dir/syscalls/syscalls.c.o -c /mnt/c/project/3_year/stm32_pm2026/syscalls/syscalls.c",
+  "file": "/mnt/c/project/3_year/stm32_pm2026/syscalls/syscalls.c",
+  "output": "CMakeFiles/stm32_template.dir/syscalls/syscalls.c.o"
+},
+{
+  "directory": "/mnt/c/project/3_year/stm32_pm2026/build",
+  "command": "arm-none-eabi-gcc -DSTM32F103C8 -DSTM32F10X_MD -I/mnt/c/project/3_year/stm32_pm2026/cmsis -I/mnt/c/project/3_year/stm32_pm2026/stm32 -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/stm32_template.dir/main.c.o -c /mnt/c/project/3_year/stm32_pm2026/main.c",
+  "file": "/mnt/c/project/3_year/stm32_pm2026/main.c",
+  "output": "CMakeFiles/stm32_template.dir/main.c.o"
+}
+]

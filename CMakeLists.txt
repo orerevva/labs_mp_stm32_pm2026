@@ -1,12 +1,17 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.10...3.30)
 
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+set(CMAKE_C_LINK_EXECUTABLE "/usr/bin/arm-none-eabi-gcc <FLAGS> <CMAKE_C_LINK_FLAGS> <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>")
+set(CMAKE_CXX_LINK_EXECUTABLE "/usr/bin/arm-none-eabi-g++ <FLAGS> <CMAKE_CXX_LINK_FLAGS> <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>")
 # Disable compiler checking
 # Otherwise it will fall with `reference to _exit() not found` error
 set(CMAKE_C_COMPILER_WORKS 1)
 set(CMAKE_CXX_COMPILER_WORKS 1)
 
-project(stm32_template)
+# Указываем языки явно, чтобы CMake не искал C++ компилятор
+project(stm32_template C ASM)
 
+set(CMAKE_EXE_LINKER_FLAGS "")
 set(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS)
 set(CMAKE_SHARED_LIBRARY_LINK_CXX_FLAGS)
 
@@ -14,7 +19,9 @@ set(TARGET_NAME ${PROJECT_NAME})
 
 # Set compiler and utility path (actual if arm-none-eabi is not in PATH env variable)
 set(ARM_TOOLCHAIN_PATH $ENV{ARM_TOOLCHAIN_PATH})
-set(CMAKE_C_COMPILER ${ARM_TOOLCHAIN_PATH}arm-none-eabi-gcc)
+set(CMAKE_C_COMPILER   ${ARM_TOOLCHAIN_PATH}arm-none-eabi-gcc)
+set(CMAKE_CXX_COMPILER ${ARM_TOOLCHAIN_PATH}arm-none-eabi-g++)
+set(CMAKE_ASM_COMPILER ${ARM_TOOLCHAIN_PATH}arm-none-eabi-gcc)
 set(OBJCOPY ${ARM_TOOLCHAIN_PATH}arm-none-eabi-objcopy)
 set(STFLASH st-flash)
 
@@ -31,7 +38,6 @@ set(LINKER_FLAGS "-nostdlib -nostartfiles")
 set(LINKER_FLAGS "${LINKER_FLAGS} -Xlinker -Map -Xlinker ${TARGET_NAME}.map ")
 # Choose ld file for your MCU carefully
 set(LINKER_FLAGS "${LINKER_FLAGS} -Xlinker -T ${CMAKE_CURRENT_SOURCE_DIR}/stm32f103c8.ld")
-# set(LINKER_FLAGS "${LINKER_FLAGS} -mcpu=cortex-m3 -mthumb -nostartfiles -g ") #Not necessary
 set(LINKER_FLAGS "${LINKER_FLAGS} -Wl,--gc-sections ")
 # Passing flags to cmake linker variable
 set(CMAKE_C_LINK_FLAGS ${LINKER_FLAGS})
@@ -62,17 +68,21 @@ set(BIN_TARGET "${EXECUTABLE_OUTPUT_PATH}/${TARGET_NAME}.bin")
 set(HEX_TARGET "${EXECUTABLE_OUTPUT_PATH}/${TARGET_NAME}.hex")
 set(ELF_TARGET "${EXECUTABLE_OUTPUT_PATH}/${TARGET_NAME}${CMAKE_EXECUTABLE_SUFFIX}")
 
+# --- .bin ---
 add_custom_command(OUTPUT ${BIN_TARGET}
                     COMMAND ${OBJCOPY} -O binary ${ELF_TARGET} ${BIN_TARGET}
-                    DEPENDS ${ELF_TARGET} ${PROJECT_NAME})
+                    DEPENDS ${ELF_TARGET})
 
-add_custom_target(bin DEPENDS ${BIN_TARGET})
+add_custom_target(bin ALL DEPENDS ${BIN_TARGET})
+add_dependencies(bin ${TARGET_NAME})
 
+# --- .hex ---
 add_custom_command(OUTPUT ${HEX_TARGET}
                     COMMAND ${OBJCOPY} -O ihex ${ELF_TARGET} ${HEX_TARGET}
-                    DEPENDS ${ELF_TARGET} ${PROJECT_NAME})
+                    DEPENDS ${ELF_TARGET})
 
-add_custom_target(hex DEPENDS ${HEX_TARGET})
+add_custom_target(hex ALL DEPENDS ${HEX_TARGET})
+add_dependencies(hex ${TARGET_NAME})
 
 # Command and target to flash firmware
 add_custom_command(OUTPUT flash_target

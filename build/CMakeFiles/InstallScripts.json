@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/mnt/c/project/3_year/stm32_pm2026/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
