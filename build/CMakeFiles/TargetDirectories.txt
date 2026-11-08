@@ -1,0 +1,6 @@
+/mnt/c/project/3_year/stm32_pm2026/build/CMakeFiles/stm32_template.dir
+/mnt/c/project/3_year/stm32_pm2026/build/CMakeFiles/bin.dir
+/mnt/c/project/3_year/stm32_pm2026/build/CMakeFiles/hex.dir
+/mnt/c/project/3_year/stm32_pm2026/build/CMakeFiles/flash.dir
+/mnt/c/project/3_year/stm32_pm2026/build/CMakeFiles/edit_cache.dir
+/mnt/c/project/3_year/stm32_pm2026/build/CMakeFiles/rebuild_cache.dir
